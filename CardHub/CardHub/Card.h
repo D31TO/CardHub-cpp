@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include <vector>
 using namespace std;
 //Setting up the class
 class Card{
@@ -15,6 +16,8 @@ public:
 	string getSuit();
 	void setValue(int Val);
 	void setSuit(string Sui);
+
+	Card();
 
 };
 
