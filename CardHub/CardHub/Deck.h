@@ -7,18 +7,18 @@
 #include <random>
 #include <algorithm>
 using namespace std;
-vector<Card> Deck;
+//vector<Card> Deck;
 
 class Deck
 {
 private:
-	int picked;
-	int PlayerVal;
-	string PlayerSuit;
-	int DealerVal;
-	string DealerSuit;
-	vector<string> SNames = { "s", "h", "c", "d" };
-	vector<Card> Deck;
+//	int picked;
+//	int PlayerVal;
+//	string PlayerSuit;
+//	int DealerVal;
+//	string DealerSuit;
+//	vector<string> SNames = { "s", "h", "c", "d" };
+//	vector<Card> Deck;
 
 public:
 
