@@ -80,8 +80,6 @@ int main()
 		DealerVal2 = Deck[1].getValue();
 		DealerSuit2 = Deck[1].getSuit();
 		
-		CardNames[PlayerVal1];
-		cout << CardNames;
 
 		//Game Output
 		int PlayerTotal = PlayerVal1 + PlayerVal2;
