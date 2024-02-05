@@ -73,18 +73,99 @@ int main()
 		//Fetching cards
 		PlayerVal1 = Deck[0].getValue();
 		PlayerSuit1 = Deck[0].getSuit();
-		DealerVal1 = Deck[0].getValue();
-		DealerSuit1 = Deck[0].getSuit();
-		PlayerVal2 = Deck[1].getValue();
-		PlayerSuit2 = Deck[1].getSuit();
-		DealerVal2 = Deck[1].getValue();
-		DealerSuit2 = Deck[1].getSuit();
+		DealerVal1 = Deck[1].getValue();
+		DealerSuit1 = Deck[1].getSuit();
+		PlayerVal2 = Deck[2].getValue();
+		PlayerSuit2 = Deck[2].getSuit();
+		DealerVal2 = Deck[3].getValue();
+		DealerSuit2 = Deck[3].getSuit();
+
+
+		vector<Card> PlayerHand = { Deck[0], Deck[2] };
+		vector<Card> DealerHand = { Deck[1], Deck[3] };
+
+		int PlayerTotal = 0;
+		int NumAces = 0;
+
+		for (Card NextCard : PlayerHand) {
+			int Value = NextCard.getValue();
 		
+			if (Value == 1) {
+				NumAces++;
+				
+			}
+			else {
+				
+				if (Value > 10) {
+					PlayerTotal += 10;
+					
+				}
+				else {
+					PlayerTotal += Value;
+					
+				}
+			}
+		}
+		if (NumAces > 0) {
+			for (int i = 0; i < NumAces; i++) {
+				if (PlayerTotal > 21) {
+					PlayerTotal += 1;
+				}
+				else {
+					PlayerTotal += 11;
+				}
+			}
+		}
 
 		//Game Output
-		int PlayerTotal = PlayerVal1 + PlayerVal2;
+#
 
-		cout << "You have " << PlayerVal1 << " " << PlayerSuit1 << " and " << PlayerVal2 << " " << PlayerSuit2 << endl;
+		//Player first values
+		cout << "You have ";
+		if (PlayerVal1 == 1){
+			cout << "A of ";
+			cout << PlayerSuit1 << " ";
+		}
+		else if (PlayerVal1 == 11) {
+			cout << "J of ";
+			cout << PlayerSuit1 << " ";
+		}
+		else if (PlayerVal1 == 12) {
+			cout << "Q of ";
+			cout << PlayerSuit1 << " ";
+		}
+		else if (PlayerVal1 == 13) {
+			cout << "K of ";
+			cout << PlayerSuit1 << " ";
+		}
+		else {
+			cout << PlayerVal1 << " of " << PlayerSuit1;
+		}
+
+		cout << "and a ";
+
+		//Player second values
+		if (PlayerVal2 == 1) {
+			cout << "A of ";
+			cout << PlayerSuit2;
+		}
+		else if (PlayerVal2 == 11) {
+			cout << "J of ";
+			cout << PlayerSuit2;
+		}
+		else if (PlayerVal2 == 12) {
+			cout << "Q of ";
+			cout << PlayerSuit2;
+		}
+		else if (PlayerVal2 == 13) {
+			cout << "K of ";
+			cout << PlayerSuit2;
+		}
+		else {
+			cout << PlayerVal2 << " of " << PlayerSuit2;
+		}
+		cout << endl;
+
 		cout << "Your total = " << PlayerTotal << endl;
 
 	}
