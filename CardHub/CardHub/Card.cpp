@@ -8,7 +8,6 @@ Card::Card(string n_Suit, int n_cardValue) {
 	Suit = n_Suit;
 	cardValue = n_cardValue;
 
-
 }
 Card::Card() {
 	Suit = "";
