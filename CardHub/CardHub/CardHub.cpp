@@ -24,6 +24,7 @@ int PlayerTotal;
 bool Stood;
 void WinCheck(int PPTotal, int DDTotal);
 
+//All the card types/name
 static string CardNames[] = {
 	"A",
 	"2",
@@ -42,6 +43,7 @@ static string CardNames[] = {
 
 int main()
 {
+	//Shuffles the Deck
 	Deck TheDeck = Deck();
 	TheDeck.Shuffle();
 
@@ -60,7 +62,7 @@ int main()
 
 		//Fetching cards
 
-
+		//Makes the first hands of the player and the dealer
 		vector<Card> PlayerHand = { TheDeck.GetCard(0), TheDeck.GetCard(1) };
 		vector<Card> DealerHand = { TheDeck.GetCard(5), TheDeck.GetCard(6) };
 
@@ -68,7 +70,7 @@ int main()
 		int NumAces = 0;
 		int DealerTotal = 0;
 
-		//Acces and total for Player
+		//Aces and total for Player
 		PlayerTotal = GetTotal(PlayerHand);
 
 		NumAces = 0;
@@ -165,7 +167,7 @@ int main()
 			Stood = true;
 		}
 
-
+		//Standing
 		if (Stood) {
 			cout << "You stand" << endl;
 			BJCheck(PlayerTotal, DealerTotal);
@@ -195,6 +197,7 @@ int main()
 
 }
 
+//Function to get the total while knowing if there are aces
 int GetTotal(vector<Card> PlayerHand){
 
 	int NumAces = 0;
@@ -231,7 +234,7 @@ int GetTotal(vector<Card> PlayerHand){
 		}
 		return PPtotal;
 }
-
+//This is the main script used to display the right cards
 void DisplayCardsHelper(Card InCard){
 
 	int CardVal = InCard.getValue();
@@ -259,7 +262,7 @@ void DisplayCardsHelper(Card InCard){
 
 
 }
-
+//This actually displays the hand but can tell the difference between dealer and player
 void DisplayHand(vector<Card> Hand, bool IsDealer) {
 	if (IsDealer) {
 		cout << "The Dealer has ";
@@ -274,6 +277,7 @@ void DisplayHand(vector<Card> Hand, bool IsDealer) {
 
 }
 
+//Funny name.... oh and it checks if there is BLACKJACK
 void BJCheck(int PPTotal, int DDTotal) {
 	if (PPTotal == 21 and DDTotal == 21) {
 		cout << "You draw! Double BlackJack" << endl;
@@ -291,6 +295,7 @@ void BJCheck(int PPTotal, int DDTotal) {
 	}
 }
 
+//Checks for a win if there isnt blackjack
 void WinCheck(int PPTotal, int DDTotal) {
 
 	if (DDTotal > 21) {
