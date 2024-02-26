@@ -102,7 +102,7 @@ int main()
 		cin >> pdec;
 
 
-		//Hit 1
+		//Player Decision 1
 		if (pdec == 1) {
 			cout << "You hit" << endl;
 			vector<Card> PlayerHand = { TheDeck.GetCard(0), TheDeck.GetCard(1), TheDeck.GetCard(2) };
@@ -171,17 +171,23 @@ int main()
 		if (Stood) {
 			cout << "You stand" << endl;
 			BJCheck(PlayerTotal, DealerTotal);
+			int dealerCardIndex = 7;
 			while(DealerTotal < 17){
 				if (DealerTotal < 17) {
-					vector<Card> DealerHand = { TheDeck.GetCard(5), TheDeck.GetCard(6), TheDeck.GetCard(7) };
+					//vector<Card> DealerHand = { TheDeck.GetCard(5), TheDeck.GetCard(6), TheDeck.GetCard(7) };
+					DealerHand.push_back(TheDeck.GetCard(dealerCardIndex));
+					dealerCardIndex++;
 					DealerTotal = GetTotal(DealerHand);
 					DisplayHand(DealerHand, true);
 
 
 					cout << "The Dealer has = " << DealerTotal << endl;
+
 					BJCheck(PlayerTotal, DealerTotal);
-					WinCheck(PlayerTotal, DealerTotal);
+					
+					
 				}
+				
 			}WinCheck(PlayerTotal, DealerTotal);
 
 
@@ -224,7 +230,7 @@ int GetTotal(vector<Card> PlayerHand){
 		}
 		if (NumAces > 0) {
 			for (int i = 0; i < NumAces; i++) {
-				if (PPtotal > 21) {
+				if (PPtotal + 11 > 21) {
 					PPtotal += 1;
 				}
 				else {
