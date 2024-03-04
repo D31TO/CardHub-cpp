@@ -23,6 +23,8 @@ int DealerTotal;
 int PlayerTotal;
 bool Stood;
 void WinCheck(int PPTotal, int DDTotal);
+int Counter = 0;
+int Counting = 0;
 
 //All the card types/name
 static string CardNames[] = {
@@ -43,7 +45,7 @@ static string CardNames[] = {
 
 int main()
 {
-	//Shuffles the Deck
+	//Shuffles the Deck/Makes Deck
 	Deck TheDeck = Deck();
 	TheDeck.Shuffle();
 
@@ -193,14 +195,16 @@ int main()
 
 		}
 	}
-
-
+	//Solitaire (Hit or Miss) a simple solitaire game that can be played with a single deck of cards.
 		else if (inp == 2) {
 			cout << "Loading Solitaire (Hit Or Miss)" << endl;
 			cout << "How to play Hit Or Miss: " << endl;
 			cout << "You will draw through a deck of shuffled cards." << endl;
 			cout << "While drawing cards you will count in your head, from ace to king. A, 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K." << endl;
 			cout << "If the card you have counted in your head gets drawn, it is a hit and is added to the hit pile." << endl;
+			vector<Card> Hits;
+			Card Current = TheDeck.GetCard(Counter);
+			int Val = Current.getValue;
 
 		}
 
