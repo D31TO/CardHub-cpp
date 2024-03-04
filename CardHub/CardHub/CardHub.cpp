@@ -48,7 +48,7 @@ int main()
 	TheDeck.Shuffle();
 
 	cout << "Welcome to the card hub!" << endl;
-	cout << "Would you like to play Blackjack (1) or Solitaire? (2)" << endl;
+	cout << "Would you like to play Blackjack (1) or Solitaire (Hit Or Miss)? (2)" << endl;
 	cin >> inp;
 
 
@@ -196,7 +196,12 @@ int main()
 
 
 		else if (inp == 2) {
-			cout << "Loading Solitaire" << endl;
+			cout << "Loading Solitaire (Hit Or Miss)" << endl;
+			cout << "How to play Hit Or Miss: " << endl;
+			cout << "You will draw through a deck of shuffled cards." << endl;
+			cout << "While drawing cards you will count in your head, from ace to king. A, 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K." << endl;
+			cout << "If the card you have counted in your head gets drawn, it is a hit and is added to the hit pile." << endl;
+
 		}
 
 	
