@@ -24,7 +24,7 @@ int PlayerTotal;
 bool Stood;
 void WinCheck(int PPTotal, int DDTotal);
 int Counter = 0;
-int Counting = 0;
+int Counting = 1;
 
 //All the card types/name
 static string CardNames[] = {
@@ -202,10 +202,64 @@ int main()
 			cout << "You will draw through a deck of shuffled cards." << endl;
 			cout << "While drawing cards you will count in your head, from ace to king. A, 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K." << endl;
 			cout << "If the card you have counted in your head gets drawn, it is a hit and is added to the hit pile." << endl;
+			
 			vector<Card> Hits;
-			Card Current = TheDeck.GetCard(Counter);
-			int Val = Current.getValue;
 
+			Card Current = TheDeck.GetCard(Counter);
+			int Val = Current.getValue();
+			string Suit = Current.getSuit();
+			int Lives = 3;
+			cout << "Press type n for next card, h for hit, and e to exit." << endl;
+			cout << "Your first card is: ";
+			DisplayCardsHelper(Current);
+			cout << endl;
+			while (Counter <= 51) {
+
+				next:
+				string pin;
+				cin >> pin;
+
+
+				if (pin == "e") {
+					exit(0);
+				}
+				else if (pin == "n") {
+
+					Counter++;
+					Counting++;
+					if (Counting >= 14) {
+						Counting = 1;
+					}
+					Card Current = TheDeck.GetCard(Counter);
+					Val = Current.getValue();
+					DisplayCardsHelper(Current);
+
+					//Debug
+					//cout << Val << endl;
+					//cout << endl;
+					//cout << Counting << endl;
+
+
+					cout << endl;
+
+
+				}
+				else if (pin == "h") {
+					if (Val == Counting) {
+						cout << "You have hit successfully!" << endl;
+						Hits.push_back(Current);
+					}
+					else {
+						cout << "Not hit here!  -1 life. You have " << Lives << " lives remaining." << endl;
+						if (Lives == 0) {
+							cout << "You hit wrong too many times. You have lost :(";
+							exit(0);
+
+						}
+					}
+				}
+			}
+			goto next;
 		}
 
 	
