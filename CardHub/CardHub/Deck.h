@@ -23,6 +23,9 @@ public:
 
 	vector<Card> GetDeck();
 	Card GetCard(int index);
+	int deckSize();
+	void removeCard(int Current);
+
 
 };
 

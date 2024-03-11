@@ -210,56 +210,66 @@ int main()
 			string Suit = Current.getSuit();
 			int Lives = 3;
 			cout << "Press type n for next card, h for hit, and e to exit." << endl;
-			cout << "Your first card is: ";
-			DisplayCardsHelper(Current);
-			cout << endl;
-			while (Counter <= 51) {
+			//cout << "Your first card is: ";
+			//DisplayCardsHelper(Current);
+			//cout << endl;
+	
+			while (TheDeck.deckSize() > 0) {
+				Counter = 0;
+				Counting = 0;
+				cout << "Deck Flickthrough" << endl;
+				cout << "Your first card is: ";
+				DisplayCardsHelper(Current);
+				cout << endl;
 
-				next:
-				string pin;
-				cin >> pin;
+				for (int i = 0; i < TheDeck.deckSize(); i++) {
+
+					string pin;
+					cin >> pin;
 
 
-				if (pin == "e") {
-					exit(0);
-				}
-				else if (pin == "n") {
-
-					Counter++;
-					Counting++;
-					if (Counting >= 14) {
-						Counting = 1;
+					if (pin == "e") {
+						exit(0);
 					}
-					Card Current = TheDeck.GetCard(Counter);
-					Val = Current.getValue();
-					DisplayCardsHelper(Current);
+					else if (pin == "n") {
 
-					//Debug
-					//cout << Val << endl;
-					//cout << endl;
-					//cout << Counting << endl;
+						Counting++;
+						if (Counting >= 14) {
+							Counting = 1;
+						}
+						Card Current = TheDeck.GetCard(Counter);
+						Val = Current.getValue();
+						DisplayCardsHelper(Current);
+
+						//Debug
+						//cout << Val << endl;
+						//cout << endl;
+						//cout << Counting << endl;
 
 
-					cout << endl;
+						cout << endl;
+						Counter++;
 
 
-				}
-				else if (pin == "h") {
-					if (Val == Counting) {
-						cout << "You have hit successfully!" << endl;
-						Hits.push_back(Current);
 					}
-					else {
-						cout << "Not hit here!  -1 life. You have " << Lives << " lives remaining." << endl;
-						if (Lives == 0) {
-							cout << "You hit wrong too many times. You have lost :(";
-							exit(0);
+					else if (pin == "h") {
+						if (Val == Counting) {
+							cout << "You have hit successfully!" << endl;
+							Hits.push_back(Current);
+							TheDeck.removeCard(Counter);
+						}
+						else {
+							Lives--;
+							cout << "Not hit here!  -1 life. You have " << Lives << " lives remaining." << endl;
+							if (Lives == 0) {
+								cout << "You hit wrong too many times. You have lost :(";
+								exit(0);
 
+							}
 						}
 					}
 				}
 			}
-			goto next;
 		}
 
 	

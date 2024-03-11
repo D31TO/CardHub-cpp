@@ -31,3 +31,10 @@ Card Deck::GetCard(int index) {
 	return Cards[index];
 }
 
+int Deck::deckSize() {
+	return Cards.size();
+}
+
+void Deck::removeCard(int Current) {
+	Cards.erase(Cards.begin() + Current);
+}
