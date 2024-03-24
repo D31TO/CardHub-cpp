@@ -213,11 +213,25 @@ int main()
 			//cout << "Your first card is: ";
 			//DisplayCardsHelper(Current);
 			//cout << endl;
-	
+			int timesHitted = 0;
+			int round = 0;
 			while (TheDeck.deckSize() > 0) {
 				Counter = 0;
-				Counting = 0;
-				cout << "Deck Flickthrough" << endl;
+				Counting = 1;
+				cout << "Deck Flickthrough (The Counter has been reset)" << endl;
+				if (round > 0) {
+					if (timesHitted <= 0) {
+						Lives--;
+						TheDeck.Shuffle();
+						cout << "You didn't hit all round, you have lost 1 life. You have " << Lives << " lives remaining." << endl;
+						if (Lives == 0) {
+							cout << "You have no more lives. You have lost :(" << endl;
+							exit(0);
+						}
+					}
+				}
+				round++;
+				timesHitted = 0;
 				cout << "Your first card is: ";
 				DisplayCardsHelper(Current);
 				cout << endl;
@@ -237,7 +251,7 @@ int main()
 						if (Counting >= 14) {
 							Counting = 1;
 						}
-						Card Current = TheDeck.GetCard(Counter);
+						Current = TheDeck.GetCard(Counter);
 						Val = Current.getValue();
 						DisplayCardsHelper(Current);
 
@@ -255,6 +269,7 @@ int main()
 					else if (pin == "h") {
 						if (Val == Counting) {
 							cout << "You have hit successfully!" << endl;
+							timesHitted++;
 							Hits.push_back(Current);
 							TheDeck.removeCard(Counter);
 						}
