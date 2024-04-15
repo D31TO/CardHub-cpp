@@ -246,13 +246,16 @@ int main()
 						exit(0);
 					}
 					else if (pin == "n") {
-
+						cout << Counter << endl;
+						cout << TheDeck.deckSize();
+						cout << endl;
 						Counting++;
 						if (Counting >= 14) {
+
 							Counting = 1;
 						}
 
-						Current = TheDeck.GetCard(Counter);
+						Current = TheDeck.GetCard(Counter-1);
 						Val = Current.getValue();
 						DisplayCardsHelper(Current);
 
@@ -269,6 +272,10 @@ int main()
 					}
 					else if (pin == "h") {
 						if (Val == Counting) {
+							cout << Counter << endl;
+							cout << TheDeck.deckSize();
+							cout << endl;
+
 							cout << "You have hit successfully!" << endl;
 							timesHitted++;
 							Hits.push_back(Current);
