@@ -205,9 +205,6 @@ int main()
 			
 			vector<Card> Hits;
 
-			Card Current = TheDeck.GetCard(Counter);
-			int Val = Current.getValue();
-			string Suit = Current.getSuit();
 			int Lives = 3;
 			cout << "Press type n for next card, h for hit, and e to exit." << endl;
 			//cout << "Your first card is: ";
@@ -216,8 +213,11 @@ int main()
 			int timesHitted = 0;
 			int round = 0;
 			while (TheDeck.deckSize() > 0) {
-				Counter = 0;
+				Counter = 1;
 				Counting = 1;
+				Card Current = TheDeck.GetCard(0);
+				int Val = Current.getValue();
+				string Suit = Current.getSuit();
 				cout << "Deck Flickthrough (The Counter has been reset)" << endl;
 				if (round > 0) {
 					if (timesHitted <= 0) {
@@ -251,6 +251,7 @@ int main()
 						if (Counting >= 14) {
 							Counting = 1;
 						}
+
 						Current = TheDeck.GetCard(Counter);
 						Val = Current.getValue();
 						DisplayCardsHelper(Current);
@@ -271,7 +272,7 @@ int main()
 							cout << "You have hit successfully!" << endl;
 							timesHitted++;
 							Hits.push_back(Current);
-							TheDeck.removeCard(Counter);
+							TheDeck.removeCard(Counter-1);
 						}
 						else {
 							Lives--;
