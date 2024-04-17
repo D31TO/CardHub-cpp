@@ -246,9 +246,6 @@ int main()
 						exit(0);
 					}
 					else if (pin == "n") {
-						cout << Counter << endl;
-						cout << TheDeck.deckSize();
-						cout << endl;
 						Counting++;
 						if (Counting >= 14) {
 
@@ -272,10 +269,6 @@ int main()
 					}
 					else if (pin == "h") {
 						if (Val == Counting) {
-							cout << Counter << endl;
-							cout << TheDeck.deckSize();
-							cout << endl;
-
 							cout << "You have hit successfully!" << endl;
 							timesHitted++;
 							Hits.push_back(Current);
@@ -295,7 +288,7 @@ int main()
 			}
 		}
 
-	
+
 
 }
 
