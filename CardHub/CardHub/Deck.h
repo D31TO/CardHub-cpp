@@ -25,7 +25,7 @@ public:
 	Card GetCard(int index);
 	int deckSize();
 	void removeCard(int Current);
-
+	void removeCard(Card inCard);
 
 };
 

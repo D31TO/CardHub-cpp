@@ -213,9 +213,9 @@ int main()
 			int timesHitted = 0;
 			int round = 0;
 			while (TheDeck.deckSize() > 0) {
-				Counter = 1;
+				Counter = 0;
 				Counting = 1;
-				Card Current = TheDeck.GetCard(0);
+				Card Current = TheDeck.GetCard(Counter);
 				int Val = Current.getValue();
 				string Suit = Current.getSuit();
 				cout << "Deck Flickthrough (The Counter has been reset)" << endl;
@@ -234,9 +234,14 @@ int main()
 				timesHitted = 0;
 				cout << "Your first card is: ";
 				DisplayCardsHelper(Current);
+				Counter++;
 				cout << endl;
 
 				for (int i = 0; i < TheDeck.deckSize(); i++) {
+
+					if (Counter >= TheDeck.deckSize()) {
+						break;
+					}
 
 					string pin;
 					cin >> pin;
@@ -252,7 +257,9 @@ int main()
 							Counting = 1;
 						}
 
-						Current = TheDeck.GetCard(Counter-1);
+						//cout << "index: " << i << ", counter: " << Counter << ", deck size: " << TheDeck.deckSize() << "\n";
+
+						Current = TheDeck.GetCard(Counter);
 						Val = Current.getValue();
 						DisplayCardsHelper(Current);
 
@@ -265,14 +272,18 @@ int main()
 						cout << endl;
 						Counter++;
 
+						//cout << Current.getValue();
+						//cout << Current.getSuit();
 
 					}
 					else if (pin == "h") {
 						if (Val == Counting) {
 							cout << "You have hit successfully!" << endl;
 							timesHitted++;
+							//cout << Current.getValue();
+							//cout << Current.getSuit();
 							Hits.push_back(Current);
-							TheDeck.removeCard(Counter-1);
+							TheDeck.removeCard(Current);
 						}
 						else {
 							Lives--;
