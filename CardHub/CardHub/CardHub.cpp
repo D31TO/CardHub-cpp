@@ -218,7 +218,8 @@ int main()
 				Card Current = TheDeck.GetCard(Counter);
 				int Val = Current.getValue();
 				string Suit = Current.getSuit();
-				cout << "Deck Flickthrough (The Counter has been reset)" << endl;
+				cout << "Deck Flickthrough (The Counter has been reset). You have ";
+				cout << TheDeck.deckSize() <<" Cards left in the deck" << endl;
 				if (round > 0) {
 					if (timesHitted <= 0) {
 						Lives--;
@@ -297,7 +298,9 @@ int main()
 					}
 				}
 			}
-		}
+		}cout << "You win! There are no more cards avaliable to hit" << endl;
+		exit(0);
+		
 
 
 
