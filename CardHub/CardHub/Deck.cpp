@@ -31,3 +31,23 @@ Card Deck::GetCard(int index) {
 	return Cards[index];
 }
 
+int Deck::deckSize() {
+	return Cards.size();
+}
+
+void Deck::removeCard(int Current) {
+	Cards.erase(Cards.begin() + Current);
+}
+
+void Deck::removeCard(Card inCard) {
+	for (int i = 0; i < Cards.size(); i++) {
+		Card nextCard = Cards.at(i);
+		if (nextCard.getValue() == inCard.getValue() and nextCard.getSuit() == inCard.getSuit()) {
+
+			Cards.erase(Cards.begin() + i); 
+			//cout << "index: " << i << " my card be is the " << nextCard.getValue() << " of " << nextCard.getSuit() << " yeah man";
+			break;
+
+		}
+	}
+}

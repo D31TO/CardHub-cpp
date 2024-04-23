@@ -23,6 +23,8 @@ int DealerTotal;
 int PlayerTotal;
 bool Stood;
 void WinCheck(int PPTotal, int DDTotal);
+int Counter = 0;
+int Counting = 1;
 
 //All the card types/name
 static string CardNames[] = {
@@ -43,12 +45,12 @@ static string CardNames[] = {
 
 int main()
 {
-	//Shuffles the Deck
+	//Shuffles the Deck/Makes Deck
 	Deck TheDeck = Deck();
 	TheDeck.Shuffle();
 
 	cout << "Welcome to the card hub!" << endl;
-	cout << "Would you like to play Blackjack (1) or Solitaire? (2)" << endl;
+	cout << "Would you like to play Blackjack (1) or Solitaire (Hit Or Miss)? (2)" << endl;
 	cin >> inp;
 
 
@@ -146,13 +148,39 @@ int main()
 
 							BJCheck(PlayerTotal, DealerTotal);
 
+							if (PlayerTotal < 21) {
+								//Player Decision 4
+								cout << "Would you like to 1) hit or 2) stand?" << endl;
+								int pdec;
+								cin >> pdec;
+								if (pdec == 1) {
+									cout << "You hit" << endl;
+									vector<Card> PlayerHand = { TheDeck.GetCard(0), TheDeck.GetCard(1), TheDeck.GetCard(2), TheDeck.GetCard(3), TheDeck.GetCard(4) };
+									PlayerTotal = GetTotal(PlayerHand);
+									DisplayHand(PlayerHand, false);
 
+
+									cout << "Your total = " << PlayerTotal << endl;
+
+									BJCheck(PlayerTotal, DealerTotal);
+
+
+								}
+								else {
+									Stood = true;
+								}
+							}
+							else {
+								Stood = true;
+							}
 						}
 						else {
 							Stood = true;
 						}
 					}
-					
+					else {
+						Stood = true;
+					}
 					
 				}
 				else {
@@ -161,7 +189,9 @@ int main()
 
 
 			}
-
+			else {
+				Stood = true;
+			}
 		}
 		else {
 			Stood = true;
@@ -188,18 +218,121 @@ int main()
 					
 				}
 				
-			}WinCheck(PlayerTotal, DealerTotal);
+			}
+			WinCheck(PlayerTotal, DealerTotal);
 
 
 		}
 	}
-
-
+	//Solitaire (Hit or Miss) a simple solitaire game that can be played with a single deck of cards.
 		else if (inp == 2) {
-			cout << "Loading Solitaire" << endl;
-		}
+			cout << "Loading Solitaire (Hit Or Miss)" << endl;
+			cout << "How to play Hit Or Miss: " << endl;
+			cout << "You will draw through a deck of shuffled cards." << endl;
+			cout << "While drawing cards you will count in your head, from ace to king. A, 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K." << endl;
+			cout << "If the card you have counted in your head gets drawn, it is a hit and is added to the hit pile." << endl;
+			
+			vector<Card> Hits;
 
-	
+			int Lives = 3;
+			cout << "Press type n for next card, h for hit, and e to exit." << endl;
+			//cout << "Your first card is: ";
+			//DisplayCardsHelper(Current);
+			//cout << endl;
+			int timesHitted = 0;
+			int round = 0;
+			while (TheDeck.deckSize() > 0) {
+				Counter = 0;
+				Counting = 1;
+				Card Current = TheDeck.GetCard(Counter);
+				int Val = Current.getValue();
+				string Suit = Current.getSuit();
+				cout << "Deck Flickthrough (The Counter has been reset). You have ";
+				cout << TheDeck.deckSize() <<" Cards left in the deck" << endl;
+				if (round > 0) {
+					if (timesHitted <= 0) {
+						Lives--;
+						TheDeck.Shuffle();
+						cout << "You didn't hit all round, you have lost 1 life. You have " << Lives << " lives remaining." << endl;
+						if (Lives == 0) {
+							cout << "You have no more lives. You have lost :(" << endl;
+							exit(0);
+						}
+					}
+				}
+				round++;
+				timesHitted = 0;
+				cout << "Your first card is: ";
+				DisplayCardsHelper(Current);
+				Counter++;
+				cout << endl;
+
+				for (int i = 0; i < TheDeck.deckSize(); i++) {
+
+					if (Counter >= TheDeck.deckSize()) {
+						break;
+					}
+
+					string pin;
+					cin >> pin;
+
+
+					if (pin == "e") {
+						exit(0);
+					}
+					else if (pin == "n") {
+						Counting++;
+						if (Counting >= 14) {
+
+							Counting = 1;
+						}
+
+						//cout << "index: " << i << ", counter: " << Counter << ", deck size: " << TheDeck.deckSize() << "\n";
+
+						Current = TheDeck.GetCard(Counter);
+						Val = Current.getValue();
+						DisplayCardsHelper(Current);
+
+						//Debug
+						//cout << Val << endl;
+						//cout << endl;
+						//cout << Counting << endl;
+
+
+						cout << endl;
+						Counter++;
+
+						//cout << Current.getValue();
+						//cout << Current.getSuit();
+
+					}
+					else if (pin == "h") {
+						if (Val == Counting) {
+							cout << "You have hit successfully!" << endl;
+							timesHitted++;
+							//cout << Current.getValue();
+							//cout << Current.getSuit();
+							Hits.push_back(Current);
+							TheDeck.removeCard(Current);
+						}
+						else {
+							Lives--;
+							cout << "Not hit here!  -1 life. You have " << Lives << " lives remaining." << endl;
+							if (Lives == 0) {
+								cout << "You hit wrong too many times. You have lost :(";
+								exit(0);
+
+							}
+						}
+					}
+				}
+			}cout << "You win! There are no more cards avaliable to hit" << endl;
+			exit(0);
+		}//cout << "You win! There are no more cards avaliable to hit" << endl;
+		//exit(0);
+		
+
+
 
 }
 
@@ -304,14 +437,18 @@ void BJCheck(int PPTotal, int DDTotal) {
 //Checks for a win if there isnt blackjack
 void WinCheck(int PPTotal, int DDTotal) {
 
-	if (DDTotal > 21) {
-		cout << "You win!!!!!";
+	if (PPTotal > 21) {
+		cout << "You lose, you went bust first.";
 		exit(0);
 	}
 
+	if (DDTotal > 21) {
+		cout << "You win! Dealer went bust.";
+		exit(0);
+	}
 
 	else if (PPTotal == DDTotal) {
-		cout << "You draw";
+		cout << "You draw.";
 		exit(0);
 	}
 
@@ -320,7 +457,7 @@ void WinCheck(int PPTotal, int DDTotal) {
 		exit(0);
 	}
 	else if(DDTotal > PPTotal) {
-		cout << "You lose :(";
+		cout << "You lose :( Dealer closer to 21.";
 		exit(0);
 	}
 }
