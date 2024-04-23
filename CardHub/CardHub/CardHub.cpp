@@ -148,13 +148,39 @@ int main()
 
 							BJCheck(PlayerTotal, DealerTotal);
 
+							if (PlayerTotal < 21) {
+								//Player Decision 4
+								cout << "Would you like to 1) hit or 2) stand?" << endl;
+								int pdec;
+								cin >> pdec;
+								if (pdec == 1) {
+									cout << "You hit" << endl;
+									vector<Card> PlayerHand = { TheDeck.GetCard(0), TheDeck.GetCard(1), TheDeck.GetCard(2), TheDeck.GetCard(3), TheDeck.GetCard(4) };
+									PlayerTotal = GetTotal(PlayerHand);
+									DisplayHand(PlayerHand, false);
 
+
+									cout << "Your total = " << PlayerTotal << endl;
+
+									BJCheck(PlayerTotal, DealerTotal);
+
+
+								}
+								else {
+									Stood = true;
+								}
+							}
+							else {
+								Stood = true;
+							}
 						}
 						else {
 							Stood = true;
 						}
 					}
-					
+					else {
+						Stood = true;
+					}
 					
 				}
 				else {
@@ -163,7 +189,9 @@ int main()
 
 
 			}
-
+			else {
+				Stood = true;
+			}
 		}
 		else {
 			Stood = true;
@@ -190,7 +218,8 @@ int main()
 					
 				}
 				
-			}WinCheck(PlayerTotal, DealerTotal);
+			}
+			WinCheck(PlayerTotal, DealerTotal);
 
 
 		}
@@ -297,9 +326,10 @@ int main()
 						}
 					}
 				}
-			}
-		}cout << "You win! There are no more cards avaliable to hit" << endl;
-		exit(0);
+			}cout << "You win! There are no more cards avaliable to hit" << endl;
+			exit(0);
+		}//cout << "You win! There are no more cards avaliable to hit" << endl;
+		//exit(0);
 		
 
 
@@ -407,14 +437,18 @@ void BJCheck(int PPTotal, int DDTotal) {
 //Checks for a win if there isnt blackjack
 void WinCheck(int PPTotal, int DDTotal) {
 
-	if (DDTotal > 21) {
-		cout << "You win!!!!!";
+	if (PPTotal > 21) {
+		cout << "You lose, you went bust first.";
 		exit(0);
 	}
 
+	if (DDTotal > 21) {
+		cout << "You win! Dealer went bust.";
+		exit(0);
+	}
 
 	else if (PPTotal == DDTotal) {
-		cout << "You draw";
+		cout << "You draw.";
 		exit(0);
 	}
 
@@ -423,7 +457,7 @@ void WinCheck(int PPTotal, int DDTotal) {
 		exit(0);
 	}
 	else if(DDTotal > PPTotal) {
-		cout << "You lose :(";
+		cout << "You lose :( Dealer closer to 21.";
 		exit(0);
 	}
 }
