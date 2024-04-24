@@ -57,7 +57,7 @@ int main()
 	if (inp != 1 && inp != 2) {
 		cout << "You can't pick that, try again." << endl;
 		cout << endl << "Press enter to exit program...";
-		system("pause");;
+		cin.get();
 		exit(0);
 	}
 	else if (inp == 1) {
@@ -264,7 +264,7 @@ int main()
 							cout << "You have no more lives. You have lost :(" << endl;
 
 							cout << "Press enter to exit program...";
-							system("pause");;
+							cin.get();
 							exit(0);
 						}
 					}
@@ -273,7 +273,7 @@ int main()
 				if (Hits.size() == 20) {
 					cout << "You have gotten 20 hits! You win!" << endl;
 					cout << "Press enter to exit program...";
-					system("pause");;
+					cin.get();
 					exit(0);
 				}
 
@@ -303,7 +303,7 @@ int main()
 					if (Hits.size() == 20) {
 						cout << "You have gotten 20 hits! You win!" << endl;
 						cout << "Press enter to exit program...";
-						system("pause");;
+						cin.get();
 						exit(0);
 					}
 
@@ -313,7 +313,7 @@ int main()
 					//Exit
 					if (pin == "e") {
 						cout << "Press enter to exit program...";
-						system("pause");;
+						cin.get();
 						exit(0);
 					}
 					//Next card
@@ -351,7 +351,7 @@ int main()
 							if (Lives == 0) {
 								cout << "You hit wrong too many times. You have lost :(";
 								cout << "Press enter to exit program...";
-								system("pause");;
+								cin.get();
 								exit(0);
 
 							}
@@ -366,7 +366,7 @@ int main()
 				}
 			}cout << "You win! There are no more cards avaliable to hit" << endl;
 			cout << endl << "Press enter to exit program...";
-			system("pause");;
+			cin.get();
 			exit(0);
 		}//cout << "You win! There are no more cards avaliable to hit" << endl;
 		//exit(0);
@@ -461,21 +461,21 @@ void BJCheck(int PPTotal, int DDTotal) {
 	if (PPTotal == 21 and DDTotal == 21) {
 		cout << "You draw! Double BlackJack" << endl;
 		cout << "Press enter to exit program...";
-		system("pause");;
+		cin.get();
 		exit(0);
 	}
 
 	else if (PPTotal == 21) {
 		cout << "You have blackjack! You win! :)" << endl;
 		cout << "Press enter to exit program...";
-		system("pause");;
+		cin.get();
 		exit(0);
 	}
 
 	else if (DDTotal == 21) {
 		cout << "The Dealer has blackjack! You lose! :(" << endl;
 		cout << "Press enter to exit program...";
-		system("pause");;
+		cin.get();
 		exit(0);
 	}
 }
