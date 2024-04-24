@@ -17,6 +17,7 @@ private:
 
 public:
 
+	//Setting up functions
 	void Shuffle();
 
 	Deck();

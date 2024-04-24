@@ -60,7 +60,8 @@ int main()
 	}
 	else if (inp == 1) {
 
-		cout << "Loading Blackjack" << endl;
+		cout << "Loading Blackjack..." << endl;
+		cout << "The dealer stands at 17 or higher." << endl;
 
 		//Fetching cards
 
@@ -226,19 +227,22 @@ int main()
 	}
 	//Solitaire (Hit or Miss) a simple solitaire game that can be played with a single deck of cards.
 		else if (inp == 2) {
-			cout << "Loading Solitaire (Hit Or Miss)" << endl;
+			cout << "Loading Solitaire (Hit Or Miss)..." << endl;
 			cout << "How to play Hit Or Miss: " << endl;
 			cout << "You will draw through a deck of shuffled cards." << endl;
 			cout << "While drawing cards you will count in your head, from ace to king. A, 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K." << endl;
 			cout << "If the card you have counted in your head gets drawn, it is a hit and is added to the hit pile." << endl;
+			cout << "When you have hit 20 cards correctly, you win!" << endl;
+			
+			//Break up rules from the game itself.
+			cout << endl;
+			cout << endl;
+			cout << endl;
 			
 			vector<Card> Hits;
 
 			int Lives = 3;
-			cout << "Press type n for next card, h for hit, and e to exit." << endl;
-			//cout << "Your first card is: ";
-			//DisplayCardsHelper(Current);
-			//cout << endl;
+			cout << "Press type n for next card, h for hit, and e to exit. You can also type hits to see how many hits you are on." << endl;
 			int timesHitted = 0;
 			int round = 0;
 			while (TheDeck.deckSize() > 0) {
@@ -249,17 +253,31 @@ int main()
 				string Suit = Current.getSuit();
 				cout << "Deck Flickthrough (The Counter has been reset). You have ";
 				cout << TheDeck.deckSize() <<" Cards left in the deck" << endl;
+				//Check to stop player from infinitely drawing.
 				if (round > 0) {
 					if (timesHitted <= 0) {
-						Lives--;
 						TheDeck.Shuffle();
-						cout << "You didn't hit all round, you have lost 1 life. You have " << Lives << " lives remaining." << endl;
+						cout << "You didn't hit all round. The Deck has been shuffled." << endl;
 						if (Lives == 0) {
 							cout << "You have no more lives. You have lost :(" << endl;
 							exit(0);
 						}
 					}
 				}
+
+				if (Hits.size() == 20) {
+					cout << "You have gotten 20 hits! You win!" << endl;
+					exit(0);
+				}
+
+
+
+
+				if (TheDeck.deckSize() <= 14) {
+					cout << "You have no more cards left possible to hit! You win!!!" << endl;
+				}
+
+				//Display first card from deck.
 				round++;
 				timesHitted = 0;
 				cout << "Your first card is: ";
@@ -267,54 +285,55 @@ int main()
 				Counter++;
 				cout << endl;
 
+
+				//For every card in the deck, repeat options.
 				for (int i = 0; i < TheDeck.deckSize(); i++) {
 
 					if (Counter >= TheDeck.deckSize()) {
 						break;
 					}
 
+					if (Hits.size() == 20) {
+						cout << "You have gotten 20 hits! You win!" << endl;
+						exit(0);
+					}
+
 					string pin;
 					cin >> pin;
 
-
+					//Exit
 					if (pin == "e") {
 						exit(0);
 					}
+					//Next card
 					else if (pin == "n") {
+						//Counter reset
 						Counting++;
 						if (Counting >= 14) {
 
 							Counting = 1;
 						}
 
-						//cout << "index: " << i << ", counter: " << Counter << ", deck size: " << TheDeck.deckSize() << "\n";
-
+						//Getting the cards info to display and use in calcs.
 						Current = TheDeck.GetCard(Counter);
 						Val = Current.getValue();
 						DisplayCardsHelper(Current);
 
-						//Debug
-						//cout << Val << endl;
-						//cout << endl;
-						//cout << Counting << endl;
 
 
+						//Increment
 						cout << endl;
 						Counter++;
 
-						//cout << Current.getValue();
-						//cout << Current.getSuit();
-
-					}
+					}//Hit
 					else if (pin == "h") {
 						if (Val == Counting) {
 							cout << "You have hit successfully!" << endl;
 							timesHitted++;
-							//cout << Current.getValue();
-							//cout << Current.getSuit();
 							Hits.push_back(Current);
+							//Remove the card thats been hit
 							TheDeck.removeCard(Current);
-						}
+						}//Punish player for guessing wrong
 						else {
 							Lives--;
 							cout << "Not hit here!  -1 life. You have " << Lives << " lives remaining." << endl;
@@ -324,6 +343,12 @@ int main()
 
 							}
 						}
+					}
+
+					//Shows the player their hits.
+					else if (pin == "hits") {
+						int DisplayHits = Hits.size();
+						cout << DisplayHits << endl;
 					}
 				}
 			}cout << "You win! There are no more cards avaliable to hit" << endl;
