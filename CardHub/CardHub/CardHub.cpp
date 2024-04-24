@@ -56,6 +56,8 @@ int main()
 
 	if (inp != 1 && inp != 2) {
 		cout << "You can't pick that, try again." << endl;
+		cout << endl << "Press enter to exit program...";
+		system("pause");;
 		exit(0);
 	}
 	else if (inp == 1) {
@@ -260,6 +262,9 @@ int main()
 						cout << "You didn't hit all round. The Deck has been shuffled." << endl;
 						if (Lives == 0) {
 							cout << "You have no more lives. You have lost :(" << endl;
+
+							cout << "Press enter to exit program...";
+							system("pause");;
 							exit(0);
 						}
 					}
@@ -267,6 +272,8 @@ int main()
 
 				if (Hits.size() == 20) {
 					cout << "You have gotten 20 hits! You win!" << endl;
+					cout << "Press enter to exit program...";
+					system("pause");;
 					exit(0);
 				}
 
@@ -295,6 +302,8 @@ int main()
 
 					if (Hits.size() == 20) {
 						cout << "You have gotten 20 hits! You win!" << endl;
+						cout << "Press enter to exit program...";
+						system("pause");;
 						exit(0);
 					}
 
@@ -303,6 +312,8 @@ int main()
 
 					//Exit
 					if (pin == "e") {
+						cout << "Press enter to exit program...";
+						system("pause");;
 						exit(0);
 					}
 					//Next card
@@ -339,6 +350,8 @@ int main()
 							cout << "Not hit here!  -1 life. You have " << Lives << " lives remaining." << endl;
 							if (Lives == 0) {
 								cout << "You hit wrong too many times. You have lost :(";
+								cout << "Press enter to exit program...";
+								system("pause");;
 								exit(0);
 
 							}
@@ -352,6 +365,8 @@ int main()
 					}
 				}
 			}cout << "You win! There are no more cards avaliable to hit" << endl;
+			cout << endl << "Press enter to exit program...";
+			system("pause");;
 			exit(0);
 		}//cout << "You win! There are no more cards avaliable to hit" << endl;
 		//exit(0);
@@ -445,16 +460,22 @@ void DisplayHand(vector<Card> Hand, bool IsDealer) {
 void BJCheck(int PPTotal, int DDTotal) {
 	if (PPTotal == 21 and DDTotal == 21) {
 		cout << "You draw! Double BlackJack" << endl;
+		cout << "Press enter to exit program...";
+		system("pause");;
 		exit(0);
 	}
 
 	else if (PPTotal == 21) {
 		cout << "You have blackjack! You win! :)" << endl;
+		cout << "Press enter to exit program...";
+		system("pause");;
 		exit(0);
 	}
 
 	else if (DDTotal == 21) {
 		cout << "The Dealer has blackjack! You lose! :(" << endl;
+		cout << "Press enter to exit program...";
+		system("pause");;
 		exit(0);
 	}
 }
@@ -464,25 +485,35 @@ void WinCheck(int PPTotal, int DDTotal) {
 
 	if (PPTotal > 21) {
 		cout << "You lose, you went bust first.";
+		cout << endl << "Press enter to exit program...";
+		system("pause");
 		exit(0);
 	}
 
 	if (DDTotal > 21) {
 		cout << "You win! Dealer went bust.";
+		cout << endl << "Press enter to exit program...";
+		system("pause");
 		exit(0);
 	}
 
 	else if (PPTotal == DDTotal) {
 		cout << "You draw.";
+		cout << endl << "Press enter to exit program...";
+		system("pause");
 		exit(0);
 	}
 
 	else if (PPTotal > DDTotal) {
 		cout << "You win!!!!!";
+		cout << endl << "Press enter to exit program...";
+		system("pause");
 		exit(0);
 	}
 	else if(DDTotal > PPTotal) {
 		cout << "You lose :( Dealer closer to 21.";
+		cout << endl << "Press enter to exit program...";
+		system("pause");
 		exit(0);
 	}
 }
