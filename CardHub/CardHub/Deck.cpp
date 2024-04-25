@@ -9,7 +9,7 @@ vector<string> SNames = { "S", "H", "C", "D" };
 //Create the deck properly
 Deck::Deck() {
 	for (int i = 1; i < 14; i++) {
-		for (int j = 0; j < 4; j++) {
+		for (int j = 0; j < 1; j++) {
 			Card NewCard = Card(SNames[j], i);
 			Cards.push_back(NewCard);
 		}

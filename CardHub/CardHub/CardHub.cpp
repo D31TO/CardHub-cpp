@@ -245,14 +245,13 @@ int main()
 			cout << endl;
 			
 			vector<Card> Hits;
-
+			Counting = 1;
 			int Lives = 3;
 			cout << "Press type n for next card, h for hit, and e to exit. You can also type hits to see how many hits you are on." << endl;
 			int timesHitted = 0;
 			int round = 0;
 			while (TheDeck.deckSize() > 0) {
 				Counter = 0;
-				Counting = 1;
 				Card Current = TheDeck.GetCard(Counter);
 				int Val = Current.getValue();
 				string Suit = Current.getSuit();
@@ -278,13 +277,6 @@ int main()
 					cout << "Press enter to exit program...";
 					cin.get();
 					exit(0);
-				}
-
-
-
-
-				if (TheDeck.deckSize() <= 14) {
-					cout << "You have no more cards left possible to hit! You win!!!" << endl;
 				}
 
 				//Display first card from deck.
