@@ -1,0 +1,3 @@
+C:/Users/d3mon/Documents/! IMPORTANT/University Work/BSC1b/Card Hub/CardHub-cpp/CardHub/cmake-build-debug/CMakeFiles/CardHub.dir
+C:/Users/d3mon/Documents/! IMPORTANT/University Work/BSC1b/Card Hub/CardHub-cpp/CardHub/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/d3mon/Documents/! IMPORTANT/University Work/BSC1b/Card Hub/CardHub-cpp/CardHub/cmake-build-debug/CMakeFiles/rebuild_cache.dir

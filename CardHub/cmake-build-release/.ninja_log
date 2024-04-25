@@ -1,0 +1,5 @@
+# ninja log v5
+4	241	7357802349473446	CMakeFiles/CardHub.dir/CardHub/Card.cpp.obj	e7785838e7db890e
+20	549	7357802352550708	CMakeFiles/CardHub.dir/CardHub/Deck.cpp.obj	457c02be7833f21
+13	607	7357802353126684	CMakeFiles/CardHub.dir/CardHub/CardHub.cpp.obj	a55fb4a571699436
+607	732	7357802354323223	CardHub.exe	16e1bb828944049a

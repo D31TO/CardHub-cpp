@@ -13,7 +13,7 @@
 #include <ctime>
 
 using namespace std;
-//Declerations
+//Declarations
 int inp;
 //vector<Card> Deck;
 int picked;
